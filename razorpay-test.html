@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Razorpay Test Payment</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body style="font-family: Arial; text-align: center; margin-top: 50px;">
+    <h2>Test Payment Gateway</h2>
+    <button 
+        onclick="initiatePayment()"
+        style="
+            padding: 12px 24px;
+            background: #2d8ac7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        "
+    >
+        Pay ₹100 Now
+    </button>
+
+    <script>
+    function initiatePayment() {
+        // Razorpay options (TEST MODE)
+        var options = {
+            key: "rzp_test_2WelYtwFVh21X5", // Your test key
+            amount: "10000", // ₹100 in paise (MUST be string)
+            currency: "INR",
+            name: "Supraja Kamireddy",
+            description: "Test Transaction",
+            order_id: "order_" + Math.floor(Math.random() * 1000000), // Random order ID (REQUIRED)
+            handler: function(response) {
+                alert("Payment Successful!\nPayment ID: " + response.razorpay_payment_id);
+            },
+            prefill: {
+                name: "Test User",
+                email: "test@example.com",
+                contact: "9876543210"
+            },
+            notes: {
+                address: "Test Address" // REQUIRED field
+            },
+            theme: {
+                color: "#2d8ac7"
+            }
+        };
+
+        // Initialize Razorpay
+        var rzp = new Razorpay(options);
+        rzp.open();
+    }
+    </script>
+</body>
+</html>

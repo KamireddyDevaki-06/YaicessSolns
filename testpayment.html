@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Razorpay Working Test</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body style="text-align: center; padding: 50px; font-family: Arial;">
+    <h2>Test Payment</h2>
+    <button onclick="payNow()" style="
+        padding: 15px 30px;
+        background: #2d8ac7;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+    ">
+        PAY ₹100 NOW
+    </button>
+
+    <script>
+    async function payNow() {
+        try {
+            // First create an order (REQUIRED)
+            const orderResponse = await fetch('https://api.razorpay.com/v1/orders', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Basic ' + btoa('rzp_test_kozGb8da3GUW6Y:TQVZhtBoS1We2cASDnD7BKwP')
+                },
+                body: JSON.stringify({
+                    amount: 10000,
+                    currency: "INR",
+                    receipt: "rcpt_" + Date.now(),
+                    payment_capture: 1
+                })
+            });
+            
+            const orderData = await orderResponse.json();
+            
+            // Then open payment dialog
+            const options = {
+                key: "rzp_test_kozGb8da3GUW6Y",
+                amount: orderData.amount,
+                currency: orderData.currency,
+                order_id: orderData.id,
+                name: "Test Merchant",
+                description: "Test Payment",
+                handler: function(response) {
+                    alert("PAYMENT SUCCESS!\nID: " + response.razorpay_payment_id);
+                },
+                prefill: {
+                    name: "Test User",
+                    email: "test@test.com",
+                    contact: "9876543210"
+                },
+                theme: {
+                    color: "#2d8ac7"
+                }
+            };
+            
+            const rzp = new Razorpay(options);
+            rzp.open();
+            
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Payment failed. Check console for details.");
+        }
+    }
+    </script>
+</body>
+</html>

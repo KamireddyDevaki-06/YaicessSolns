@@ -1,0 +1,35 @@
+<button id="pay-button">Pay Now</button>
+
+<script>
+document.getElementById('pay-button').onclick = async function(e) {
+    // Create order via PHP
+    const order = await (await fetch('create_order.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount: 10000 }) // ₹100 in paise
+    })).json();
+
+    const options = {
+        key: "rzp_test_YOUR_KEY_ID",
+        amount: order.amount,
+        currency: "INR",
+        order_id: order.id,
+        name: "Your Business",
+        handler: function(response) {
+            alert(`Payment ID: ${response.razorpay_payment_id}`);
+            verifyPayment(response);
+        }
+    };
+    
+    const rzp = new Razorpay(options);
+    rzp.open();
+    e.preventDefault();
+};
+
+async function verifyPayment(response) {
+    await fetch('verify_payment.php', {
+        method: 'POST',
+        body: JSON.stringify(response)
+    });
+}
+</script>

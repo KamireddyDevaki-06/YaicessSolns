@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <style>
+    body {
+      background: #121212;
+      color: white;
+      font-family: Arial;
+      text-align: center;
+      padding: 30px;
+    }
+    table {
+      margin: 0 auto;
+      width: 80%;
+      border-collapse: collapse;
+      background: #1e1e1e;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #444;
+    }
+  </style>
+</head>
+<body>
+  <h2>All Registered Participants</h2>
+  <p id="count">Loading...</p>
+
+  <table id="dataTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Registered Event</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    fetch('/api/registrations')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("count").innerText = `Total Registered: ${data.length}`;
+        const tbody = document.querySelector("tbody");
+        data.forEach(user => {
+          const row = `<tr>
+            <td>${user.name}</td>
+            <td>${user.email}</td>
+            <td>${user.phone}</td>
+            <td>${user.event}</td>
+          </tr>`;
+          tbody.innerHTML += row;
+        });
+      });
+  </script>
+</body>
+</html>

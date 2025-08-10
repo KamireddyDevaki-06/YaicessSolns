@@ -1,0 +1,991 @@
+/* Basic Reset & Body Styling */
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #000; /* Black background for the entire page */
+    color: #fff; /* Default white text color */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    min-height: 100vh; /* Ensure body takes full viewport height for footer positioning */
+    position: relative; /* For absolute footer positioning within body */
+    display: flex; /* Make body a flex container */
+    flex-direction: column; /* Stack children vertically */
+}
+
+/* Define CSS Custom Properties (Variables) for consistent colors */
+:root {
+    --gold-color: #ffd700; /* Standard gold color */
+    --gold-hover-darker: #e0b800; /* Slightly darker gold for hover effects */
+    --text-white-fade: rgba(255, 255, 255, 0.8); /* Faded white for secondary text */
+    --border-grey: rgba(255, 255, 255, 0.1); /* Subtle border color */
+    --overlay-dark: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+}
+
+/* Container for consistent content width and centering */
+.container {
+    max-width: 1200px; /* Max width of your content */
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 0 20px; /* Padding on the sides for smaller screens */
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #000; /* Black background for the navbar */
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-grey); /* Subtle bottom border */
+    flex-shrink: 0; /* Prevent navbar from shrinking */
+}
+
+.navbar .container {
+    display: flex; /* Use flexbox for alignment */
+    justify-content: space-between; /* Space elements evenly */
+    align-items: center; /* Vertically align items in the center */
+}
+
+/* YAICESS SOLUTIONS Logo Styling (in gold) */
+.logo {
+    font-weight: 700; /* Bold font */
+    font-size: 20px;
+    color: var(--gold-color); /* Set logo color to gold */
+    letter-spacing: 1px; /* Add slight letter spacing */
+}
+
+/* Navigation Links Container */
+.nav-links ul {
+    list-style: none; /* Remove bullet points from list */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Arrange list items horizontally */
+}
+
+.nav-links li {
+    margin-left: 30px; /* Space between individual menu items */
+}
+
+.nav-links a {
+    text-decoration: none; /* Remove underline from links */
+    color: #fff; /* Default white color for links */
+    font-size: 14px;
+    font-weight: 400;
+    padding-bottom: 5px; /* Space for the active state underline */
+    transition: color 0.3s ease, border-bottom 0.3s ease; /* Smooth transition for hover effects */
+}
+
+/* Navigation links turn gold on hover */
+.nav-links a:hover {
+    color: var(--gold-color); /* Change text color to gold on hover */
+}
+
+/* Active navigation link (e.g., "HOME" on hari.html, "SPEAKERS" on speakers.html, "AGENDA" on agenda.html) - gold with underline */
+.nav-links a.active {
+    color: var(--gold-color); /* Gold color for the active item */
+    border-bottom: 2px solid var(--gold-color); /* Gold underline for the active item */
+}
+
+/* Registration Button Styling */
+.registration-btn {
+    background-color: var(--gold-color); /* Gold background color */
+    color: #000; /* Black text color */
+    border: none; /* No border */
+    padding: 10px 25px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer; /* Indicate it's clickable */
+    border-radius: 3px; /* Slightly rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    text-decoration: none; /* Remove underline from A tag acting as button */
+    display: inline-block; /* Essential for padding/margin with A tag */
+}
+
+.registration-btn:hover {
+    background-color: var(--gold-hover-darker); /* Slightly darker gold on hover */
+}
+
+/* Active Registration button style */
+.registration-btn.active {
+    background-color: var(--gold-hover-darker); /* Darker gold when active */
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* Subtle glow */
+}
+
+/* Hero Section Styling (Main content area - for hari.html) */
+.hero-section {
+    flex-grow: 1; /* Allow this section to grow and push footer down */
+    display: flex; /* Use flexbox to center content */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    text-align: center; /* Center text within the section */
+    padding: 60px 0; /* Add some top/bottom padding */
+
+    /* Background Image Styling */
+    background-image: url('homepage.png'); /* Path to your image file */
+    background-size: cover; /* Image covers the entire element */
+    background-position: center; /* Centers the image within the element */
+    background-repeat: no-repeat; /* Prevents image from repeating */
+    position: relative; /* Needed for the overlay pseudo-element */
+    z-index: 1; /* Ensure content is above the overlay */
+}
+
+/* Optional: Dark overlay for better text readability on top of background image */
+.hero-section::before {
+    content: ""; /* Required for pseudo-elements */
+    position: absolute; /* Position relative to .hero-section */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay-dark); /* Semi-transparent black overlay */
+    z-index: -1; /* Place it behind the content but above the background image */
+}
+
+/* Ensure text in hero section stays above the overlay */
+.hero-section h1,
+.hero-section p {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-section h1 {
+    font-size: 60px; /* Large heading font size */
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-section p {
+    font-size: 20px;
+    font-weight: 400;
+    max-width: 700px; /* Limit width for better readability */
+    margin: 0 auto;
+    line-height: 1.5;
+    color: var(--text-white-fade); /* Slightly faded white for subheading */
+}
+
+/* --- Speakers Page Specific Styles --- */
+
+.speakers-section {
+    flex-grow: 1; /* Allow this section to grow and push footer down */
+    padding: 60px 0; /* Top and bottom padding */
+    text-align: center; /* Center the main title/subtitle */
+}
+
+.speakers-section .section-title {
+    font-size: 48px;
+    font-weight: 700;
+    color: #fff; /* White title */
+    margin-bottom: 15px;
+}
+
+.speakers-section .section-subtitle {
+    font-size: 18px;
+    color: var(--text-white-fade);
+    margin-bottom: 50px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.speakers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid columns */
+    gap: 30px; /* Space between speaker cards */
+    justify-content: center; /* Center the grid items if there are fewer */
+    padding-top: 20px;
+}
+
+.speaker-card {
+    background-color: rgba(255, 255, 255, 0.05); /* Slightly visible card background */
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle border */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.speaker-card:hover {
+    transform: translateY(-5px); /* Lift card on hover */
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly brighter background on hover */
+}
+
+.speaker-photo {
+    width: 150px; /* Size of speaker photo */
+    height: 150px;
+    border-radius: 50%; /* Make it round */
+    object-fit: cover; /* Ensure image fills circle without distortion */
+    border: 3px solid var(--gold-color); /* Gold border around photo */
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); /* Subtle gold glow */
+}
+
+.speaker-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.speaker-title {
+    font-size: 16px;
+    color: var(--gold-color); /* Title in gold */
+    margin-bottom: 10px;
+}
+
+.speaker-topic {
+    font-size: 15px;
+    color: var(--text-white-fade);
+    font-style: italic;
+    margin-bottom: 0;
+}
+
+/* --- Agenda Page Specific Styles (with Gold Boxes) --- */
+
+.agenda-section {
+    flex-grow: 1; /* Allow this section to grow and push footer down */
+    padding: 60px 0; /* Top and bottom padding */
+    text-align: center; /* Center the main title */
+}
+
+.agenda-section .section-title {
+    font-size: 48px;
+    font-weight: 700;
+    color: #fff; /* White title */
+    margin-bottom: 50px; /* Space below title */
+}
+
+/* Timeline Container */
+.timeline {
+    position: relative;
+    max-width: 900px; /* Limit width of timeline for better readability */
+    margin: 0 auto 80px auto; /* Center and add bottom margin */
+    padding: 0 20px;
+}
+
+/* Vertical Line for Timeline */
+.timeline::before {
+    content: '';
+    position: absolute;
+    width: 2px; /* Thickness of the line */
+    background-color: var(--border-grey); /* Grey line color */
+    top: 0;
+    bottom: 0;
+    left: 50%; /* Center the line */
+    margin-left: -1px; /* Adjust to be perfectly centered */
+    z-index: 0;
+}
+
+/* Individual Timeline Item */
+.timeline-item {
+    padding: 10px 0;
+    position: relative;
+    width: 50%; /* Each item takes half the width of the timeline container */
+    margin-bottom: 40px; /* Space between items */
+    z-index: 1; /* Ensure items are above the line */
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0; /* Odd items on the left */
+    text-align: right;
+    padding-right: 50px; /* Space for the icon */
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%; /* Even items on the right */
+    text-align: left;
+    padding-left: 50px; /* Space for the icon */
+}
+
+/* Timeline Icon (Gold Circle with Clock) */
+.timeline-icon {
+    width: 40px;
+    height: 40px;
+    background-color: var(--gold-color); /* Gold background */
+    border-radius: 50%; /* Circular shape */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 5px; /* Adjust vertically */
+    color: #000; /* Black icon color */
+    font-size: 18px;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* Gold glow */
+}
+
+.timeline-item:nth-child(odd) .timeline-icon {
+    right: -20px; /* Position icon for left-aligned items */
+}
+
+.timeline-item:nth-child(even) .timeline-icon {
+    left: -20px; /* Position icon for right-aligned items */
+}
+
+/* Timeline Content - GOLD BOXES */
+.timeline-content {
+    background-color: var(--gold-color); /* Gold background for the boxes */
+    color: #000; /* Default text color inside the box to black for readability on gold */
+    padding: 20px 25px;
+    border-radius: 8px;
+    border: 1px solid var(--gold-color); /* Gold border */
+    text-align: left;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4); /* Enhanced gold shadow */
+}
+
+/* Ensure text elements *inside* the gold box are black for readability */
+.timeline-content .timeline-time,
+.timeline-content .timeline-title,
+.timeline-content .timeline-description {
+    color: #000; /* All text inside the gold box is black */
+}
+
+/* Stats Grid Section */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid for stats */
+    gap: 30px;
+    padding: 60px 0; /* Padding around the grid */
+    margin-top: 50px; /* Space from timeline */
+}
+
+.stat-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 40px 20px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.stat-number {
+    font-size: 60px;
+    font-weight: 700;
+    color: var(--gold-color); /* Number in gold */
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.stat-description {
+    font-size: 14px;
+    color: var(--text-white-fade);
+    margin-bottom: 0;
+}
+
+
+/* --- Venue Page Specific Styles --- */
+
+.venue-section {
+    flex-grow: 1; /* Allow this section to grow and push footer down */
+    padding: 60px 0; /* Top and bottom padding */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.venue-content {
+    display: flex;
+    flex-direction: row; /* Default to row layout for desktop */
+    align-items: center;
+    gap: 50px; /* Space between image and details */
+    background-color: rgba(255, 255, 255, 0.05); /* Card background */
+    border-radius: 8px;
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    max-width: 1000px; /* Limit overall width */
+    width: 100%;
+}
+
+.venue-image {
+    flex: 1; /* Take up available space */
+    min-width: 300px; /* Minimum width for the image container */
+}
+
+.venue-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block; /* Remove extra space below image */
+    object-fit: cover;
+}
+
+.venue-details {
+    flex: 1; /* Take up available space */
+    text-align: left;
+}
+
+.venue-title {
+    font-size: 40px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 25px;
+}
+
+.venue-info,
+.venue-description,
+.venue-features,
+.venue-parking {
+    font-size: 16px;
+    color: var(--text-white-fade);
+    margin-bottom: 15px;
+    display: flex; /* Use flex for icon and text alignment */
+    align-items: flex-start; /* Align icon and text at the top */
+    line-height: 1.5;
+}
+
+.venue-info i,
+.venue-description i,
+.venue-features i,
+.venue-parking i {
+    color: var(--gold-color); /* Gold color for icons */
+    margin-right: 15px; /* Space between icon and text */
+    font-size: 20px; /* Slightly larger icons */
+    flex-shrink: 0; /* Prevent icon from shrinking */
+    padding-top: 2px; /* Small adjustment for icon alignment */
+}
+
+/* --- Contact Page Specific Styles --- */
+.contact-section {
+    flex-grow: 1;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.contact-section .section-title {
+    font-size: 48px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 50px;
+}
+
+.contact-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start; /* Align items to the top */
+    gap: 50px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.contact-info {
+    flex: 1;
+    text-align: left;
+    padding-right: 20px; /* Space from map */
+}
+
+.contact-subtitle {
+    font-size: 32px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.contact-detail {
+    font-size: 16px;
+    color: var(--text-white-fade);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+    line-height: 1.5;
+}
+
+.contact-detail i {
+    color: var(--gold-color);
+    margin-right: 15px;
+    font-size: 20px;
+    flex-shrink: 0;
+    padding-top: 2px;
+}
+
+/* New map container for embedded map */
+.map-container {
+    flex: 1;
+    min-height: 400px;
+    border-radius: 8px;
+    overflow: hidden; /* Ensures iframe corners are rounded */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.map-container iframe {
+    display: block; /* Remove extra space below iframe */
+}
+
+/* Footer Styling - Adjusted for flexbox layout */
+.footer {
+    text-align: right;
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    flex-shrink: 0; /* Prevent footer from shrinking */
+    margin-top: auto; /* Push footer to the bottom of the flex container */
+    width: 100%; /* Take full width */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* --- Registration Page Styles --- */
+.registration-section {
+    flex-grow: 1;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.registration-section .section-title,
+.payment-section .section-title {
+    font-size: 48px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.registration-section .section-subtitle,
+.payment-section .section-subtitle {
+    font-size: 18px;
+    color: var(--text-white-fade);
+    margin-bottom: 50px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.registration-form {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.form-group label i {
+    color: var(--gold-color);
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="tel"],
+.form-group input[type="email"] {
+    width: calc(100% - 20px); /* Adjust for padding */
+    padding: 12px 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="tel"]:focus,
+.form-group input[type="email"]:focus {
+    outline: none;
+    border-color: var(--gold-color);
+}
+
+.submit-btn {
+    background-color: var(--gold-color);
+    color: #000;
+    border: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.submit-btn:hover {
+    background-color: var(--gold-hover-darker);
+}
+
+/* --- Payment Page Styles --- */
+.payment-section {
+    flex-grow: 1;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.payment-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto 50px auto; /* Space below options */
+}
+
+.payment-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    cursor: pointer; /* Indicate clickable */
+}
+
+.payment-card:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.payment-card i {
+    font-size: 50px;
+    color: var(--gold-color);
+    margin-bottom: 20px;
+}
+
+.payment-card h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.payment-card p {
+    font-size: 15px;
+    color: var(--text-white-fade);
+    margin-bottom: 0;
+}
+
+/* Hide complete-payment-btn on payment.html as it's replaced by modal buttons */
+.complete-payment-btn {
+    display: none;
+}
+
+.payment-status {
+    background-color: rgba(255, 215, 0, 0.15); /* Light gold background */
+    border: 2px solid var(--gold-color);
+    border-radius: 8px;
+    padding: 40px;
+    max-width: 600px;
+    margin: 50px auto;
+    color: #fff;
+    text-align: center;
+}
+
+.payment-status .success-icon {
+    font-size: 80px;
+    color: var(--gold-color);
+    margin-bottom: 20px;
+}
+
+.payment-status h2 {
+    font-size: 36px;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.payment-status p {
+    font-size: 18px;
+    color: var(--text-white-fade);
+    line-height: 1.5;
+}
+
+/* --- Modal Styles for Payment Forms --- */
+.payment-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.modal-content {
+    background-color: #1a1a1a; /* Dark background for modal */
+    margin: auto;
+    padding: 40px;
+    border: 1px solid var(--border-grey);
+    border-radius: 10px;
+    width: 90%; /* Responsive width */
+    max-width: 500px; /* Max width */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    position: relative;
+    animation: fadeIn 0.3s ease-out; /* Simple fade in animation */
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(-20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.modal-content h2 {
+    color: var(--gold-color);
+    font-size: 28px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.modal-content .form-group label {
+    color: #fff;
+    font-size: 15px;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="email"],
+.modal-content select {
+    width: calc(100% - 20px);
+    padding: 12px 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.modal-content input[type="text"]:focus,
+.modal-content input[type="email"]:focus,
+.modal-content select:focus {
+    outline: none;
+    border-color: var(--gold-color);
+}
+
+.modal-content .modal-submit-btn {
+    background-color: var(--gold-color);
+    color: #000;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.modal-content .modal-submit-btn:hover {
+    background-color: var(--gold-hover-darker);
+}
+
+.close-button {
+    color: #fff;
+    font-size: 35px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--gold-color);
+    text-decoration: none;
+}
+
+.qr-code-placeholder {
+    background-color: rgba(255, 255, 255, 0.08);
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-white-fade);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-style: italic;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+/* Ensure payment-status remains centered when visible */
+.payment-section .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 120px); /* Adjust based on header/footer height */
+}
+
+
+/* Responsive Adjustments for smaller screens */
+@media (max-width: 768px) {
+    .speakers-section .section-title,
+    .agenda-section .section-title,
+    .contact-section .section-title,
+    .registration-section .section-title,
+    .payment-section .section-title { /* Apply to all main section titles */
+        font-size: 38px;
+    }
+
+    .speakers-grid {
+        grid-template-columns: 1fr; /* Single column on small screens */
+    }
+
+    .navbar .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links ul {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 15px;
+        align-items: center; /* Center nav links in column layout */
+    }
+
+    .nav-links li {
+        margin: 10px 0; /* Adjust margin for vertical links */
+    }
+
+    .registration-btn {
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .hero-section h1 {
+        font-size: 40px;
+    }
+
+    .hero-section p {
+        font-size: 16px;
+    }
+
+    /* Adjust timeline for smaller screens */
+    .timeline::before {
+        left: 20px; /* Move line to the left */
+    }
+
+    .timeline-item {
+        width: 100%; /* Full width for items */
+        padding-left: 50px; /* Push content to the right of the line */
+        padding-right: 0;
+        text-align: left; /* Align text left */
+    }
+
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        left: 0; /* All items aligned to the left */
+        padding-right: 0; /* Remove right positioning */
+    }
+
+    .timeline-item:nth-child(odd) .timeline-icon,
+    .timeline-item:nth-child(even) .timeline-icon {
+        left: 0px; /* Align icons to the left line */
+        right: auto; /* Remove right positioning */
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content {
+        text-align: left; /* Text aligns left for all items */
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr; /* Single column on small screens */
+    }
+
+    /* Responsive adjustments for Venue page */
+    .venue-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 30px;
+    }
+
+    .venue-title {
+        font-size: 32px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .venue-info,
+    .venue-description,
+    .venue-features,
+    .venue-parking {
+        text-align: left; /* Keep text left-aligned even in column layout */
+        align-items: center; /* Center icon and text vertically if possible */
+    }
+
+    .venue-info i,
+    .venue-description i,
+    .venue-features i,
+    .venue-parking i {
+        margin-right: 10px;
+    }
+
+    /* Responsive adjustments for Contact page */
+    .contact-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 30px;
+    }
+
+    .contact-info {
+        padding-right: 0;
+        text-align: center;
+    }
+
+    .contact-detail {
+        justify-content: center; /* Center content when stacked */
+    }
+
+    .contact-detail i {
+        margin-right: 10px;
+    }
+
+    .map-container {
+        width: 100%;
+        min-height: 300px; /* Adjust height for smaller screens */
+    }
+
+    /* Responsive Adjustments for new pages */
+    .registration-form, .payment-options, .payment-status {
+        max-width: 90%; /* Make them take more width on small screens */
+        padding: 25px;
+    }
+
+    .form-group input {
+        width: calc(100% - 20px); /* Adjust to avoid overflow with padding */
+    }
+
+    .payment-options {
+        grid-template-columns: 1fr; /* Single column for payment cards */
+    }
+
+    .registration-section .section-title,
+    .payment-section .section-title {
+        font-size: 38px;
+    }
+}
